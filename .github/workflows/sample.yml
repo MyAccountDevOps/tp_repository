@@ -1,6 +1,7 @@
 # Pipeline pour un projet Python avec Github Actions
 
 name: Python CI
+on: [push]
 
 # Contrainte de temps de build
 jobs:
