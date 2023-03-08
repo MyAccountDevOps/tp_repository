@@ -1,5 +1,5 @@
-def print_function() :
-    print("helllo world")
+def print_function(d) :
+    print(d)
 
 def function_1(a,b):
     d = a + b
