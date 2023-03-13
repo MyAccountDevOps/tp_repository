@@ -42,7 +42,7 @@ jobs:
     - name: Slack Notification
       uses: act10ns/slack@v1
       with: 
-        status: starting
+        status: ${{ job.status }}
         channel: '#github'
-        message: 'Starting Build and Deploy...'
+        message: Build {{ env.GITHUB_REF_NAME }} branch Successfully
       if: always()
