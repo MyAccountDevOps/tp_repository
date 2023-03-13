@@ -4,9 +4,9 @@ class TpClass :
     def __init__(self):
         pass
     @classmethod
-    def print_function(cls,print_smthng) :
+    def function_0(cls,numb_1,numb_2) :
         """print somthing """
-        print(print_smthng)
+        return numb_1 - numb_2
     @classmethod
     def function_1(cls,numb_1,numb_2):
         """add tow numbers"""

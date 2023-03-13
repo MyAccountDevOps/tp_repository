@@ -3,7 +3,7 @@ from devopstp import TpClass
 
 def test_print():
     """test_print"""
-    assert TpClass.print_function("hello")
+    assert TpClass.function_0(6,3)==3
 
 def test_fun1():
     """test_fun1"""
