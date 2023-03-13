@@ -37,8 +37,10 @@ jobs:
         pytest tests.py
 
     # Envoi de la notification par mail 
-    - name: Send notification to Slack
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"New commit pushed to main branch!"}' $SLACK_WEBHOOK_URL
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with: 
+        status: starting
+        channel: '#github'
+        message: 'Starting Build and Deploy...'
+      if: always()
