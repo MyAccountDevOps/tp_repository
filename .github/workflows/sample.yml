@@ -37,13 +37,8 @@ jobs:
         pytest tests.py
 
     # Envoi de la notification par mail 
-    - name: Send email notification
-      uses: dawidd6/action-send-mail@v3.1.0
-      with:
-        server_address: smtp.gmail.com
-        server_port: 587
-        username: ${{ secrets.EMAIL_USERNAME }}
-        password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: 'Python CI/CD Pipeline Result'
-        body: 'The Python CI/CD pipeline has completed. Please check the pipeline results.'
-        to: newimane2022@gmail.com
+    - name: Send notification to Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"New commit pushed to main branch!"}' $SLACK_WEBHOOK_URL
