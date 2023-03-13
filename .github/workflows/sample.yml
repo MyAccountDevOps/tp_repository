@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
     - uses: actions/checkout@v2
 
@@ -37,11 +35,15 @@ jobs:
       run: |
         pip install pytest
         pytest tests.py
-      - name: Slack Notification
-      uses: act10ns/slack@v1
-      with: 
-        status: starting
-        channel: '#github'
-        message: Starting Build and Deploy...
-      if: always()
-      
+
+    # Envoi de la notification par mail 
+    - name: Send email notification
+      uses: dawidd6/action-send-mail@v3.1.0
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: 'Python CI/CD Pipeline Result'
+        body: 'The Python CI/CD pipeline has completed. Please check the pipeline results.'
+        to: newimane2022@gmail.com
