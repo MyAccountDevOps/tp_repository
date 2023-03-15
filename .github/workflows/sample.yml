@@ -38,10 +38,19 @@ jobs:
         pytest tests.py
 
     # Envoi de la notification par mail 
-    - name: Slack Notification
-      uses: act10ns/slack@v1
-      with: 
-        status: ${{ job.status }}
-        channel: '#github'
-        message: 'Build  branch Successfully'
-      if: always()
+    slack_notification:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: build
+    steps:
+      - name: Notify on Slack
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_CHANNEL: 'projet'
+        with:
+          args: |
+            --title "Build ${{ job.status }}" \
+            --fields branch,commit,author,commit_message \
+            --color ${{ job.status == 'success' && 'good' || 'danger' }} \
+            --status ${{ job.status }}

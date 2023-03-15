@@ -1,8 +1,8 @@
 """import TpClass"""
 from devopstp import TpClass
 
-def test_print():
-    """test_print"""
+def test_fun0():
+    """test_fun0"""
     assert TpClass.function_0(6,3)==3
 
 def test_fun1():
