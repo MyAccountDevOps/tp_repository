@@ -38,7 +38,7 @@ jobs:
         pytest tests.py
 
     # Envoi de la notification par mail 
-    slack_notification:
+  slack_notification:
     runs-on: ubuntu-latest
     if: always()
     needs: build
@@ -52,5 +52,7 @@ jobs:
           args: |
             --title "Build ${{ job.status }}" \
             --fields branch,commit,author,commit_message \
+            --commit_url "https://github.com/hananesi2MyAccountDevOps/tp_repository
+/commit/${{ github.sha }}" \
             --color ${{ job.status == 'success' && 'good' || 'danger' }} \
             --status ${{ job.status }}
