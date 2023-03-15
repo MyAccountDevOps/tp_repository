@@ -5,7 +5,7 @@ class TpClass :
         pass
     @classmethod
     def function_0(cls,numb_1,numb_2) :
-        """print somthing """
+        """print somthing"""
         return numb_1 - numb_2
     @classmethod
     def function_1(cls,numb_1,numb_2):
