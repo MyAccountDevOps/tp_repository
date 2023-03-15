@@ -52,6 +52,6 @@ jobs:
           args: |
             --title "Build ${{ job.status }}" \
             --fields branch,commit,author,commit_message \
-            --commit_url "https://github.com/hananesi2MyAccountDevOps/tp_repository/commit/${{ github.sha }}" \
+            --commit_url "https://github.com/MyAccountDevOps/tp_repository/commit/${{ github.sha }}" \
             --color ${{ job.status == 'success' && 'good' || 'danger' }} \
             --status ${{ job.status }}
